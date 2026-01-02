@@ -20,7 +20,8 @@
 				"esbenp.prettier-vscode",
 				"jacobpfeifer.pfeifer-hurl",
 				"yzhang.markdown-all-in-one",
-				"4ops.terraform"
+				"4ops.terraform",
+				"eamodio.gitlens"
 			]
 		}
 	}
