@@ -34,6 +34,7 @@ REQUIRED_PKGS=(
   unzip
   ca-certificates
   gnupg
+  file
 )
 
 MISSING_PKGS=()
