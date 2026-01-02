@@ -5,9 +5,12 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppassword
-      POSTGRES_DB: appdb
+      # username
+      POSTGRES_USER: 
+      # password
+      POSTGRES_PASSWORD:
+      # db name
+      POSTGRES_DB:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
