@@ -77,3 +77,15 @@ else
 
   terraform version
 fi
+
+# ----------------------------
+# Install Vercel CLI
+# ----------------------------
+if command_exists vercel; then
+  echo "✓ Vercel CLI already installed: $(vercel --version)"
+else
+  echo "→ Installing Vercel CLI"
+  npm install -g vercel@latest
+
+  vercel --version
+fi
