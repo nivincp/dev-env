@@ -25,7 +25,7 @@ trap cleanup EXIT
 require_arm64
 
 # ----------------------------
-# Prerequisites (asdf-compatible)
+# Prerequisites
 # ----------------------------
 REQUIRED_PKGS=(
   git
@@ -47,62 +47,6 @@ if (( ${#MISSING_PKGS[@]} > 0 )); then
   sudo apt-get install -y "${MISSING_PKGS[@]}"
   sudo apt-get clean
 fi
-
-# ----------------------------
-# Install asdf
-# ----------------------------
-ASDF_VERSION="v0.14.1"
-ASDF_DIR="$HOME/.asdf"
-
-if [[ -d "$ASDF_DIR" ]]; then
-  echo "✓ asdf already installed"
-else
-  echo "→ Installing asdf ${ASDF_VERSION}"
-  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch "$ASDF_VERSION"
-fi
-
-# Activate asdf for this script
-# shellcheck disable=SC1090
-. "$ASDF_DIR/asdf.sh"
-
-# Persist activation (zsh is primary shell)
-for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do
-  if [[ -f "$rc" ]] && ! grep -q 'asdf.sh' "$rc"; then
-    echo '. "$HOME/.asdf/asdf.sh"' >> "$rc"
-  fi
-done
-
-asdf --version
-
-# ----------------------------
-# Install Node.js (latest LTS via asdf)
-# ----------------------------
-if asdf plugin list | grep -q '^nodejs$'; then
-  asdf plugin update nodejs
-else
-  asdf plugin add nodejs
-fi
-
-# Handle old vs new plugin keyring logic safely
-KEYRING_SCRIPT="$ASDF_DIR/plugins/nodejs/bin/import-release-team-keyring"
-if [[ -x "$KEYRING_SCRIPT" ]]; then
-  bash "$KEYRING_SCRIPT"
-else
-  echo "→ Node.js keyring helper not present (new plugin version, continuing)"
-fi
-
-if asdf list nodejs | grep -q 'lts'; then
-  echo "✓ Node.js LTS already installed"
-else
-  echo "→ Installing Node.js (LTS)"
-  asdf install nodejs lts
-fi
-
-asdf global nodejs lts
-asdf reshim nodejs
-
-node -v
-npm -v
 
 # ----------------------------
 # Install Hurl (Linux ARM64)
@@ -160,15 +104,4 @@ else
   sudo chmod +x /usr/local/bin/terraform
 
   terraform version
-fi
-
-# ----------------------------
-# Install Vercel CLI
-# ----------------------------
-if command_exists vercel; then
-  echo "✓ Vercel CLI already installed: $(vercel --version)"
-else
-  echo "→ Installing Vercel CLI"
-  npm install -g vercel@latest
-  vercel --version
 fi
