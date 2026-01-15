@@ -1,0 +1,118 @@
+erDiagram
+    TENANT {
+        string id
+        string name
+        string defaultLanguage
+        string lineOfficialAccountId
+    }
+
+    CUSTOMER {
+        string id
+        string lineUserId
+        string preferredLanguage
+        datetime createdAt
+    }
+
+    STORE {
+        string id
+        string tenantId
+        string name
+        string location
+        bool isActive
+    }
+
+    PRODUCT {
+        string id
+        string tenantId
+        string storeId
+        string name
+        float price
+        bool isAvailable
+    }
+
+    CART {
+        string id
+        string customerId
+        string storeId
+        string status
+        datetime updatedAt
+    }
+
+    CART_ITEM {
+        string id
+        string cartId
+        string productId
+        int quantity
+        float unitPrice
+    }
+
+    ORDER {
+        string id
+        string customerId
+        string storeId
+        string status
+        float totalAmount
+        datetime createdAt
+    }
+
+    ORDER_ITEM {
+        string id
+        string orderId
+        string productId
+        int quantity
+        float unitPrice
+    }
+
+    PROMOTION {
+        string id
+        string tenantId
+        string code
+        string type
+        float value
+        bool isActive
+    }
+
+    CONVERSATION {
+        string id
+        string tenantId
+        string customerId
+        datetime lastMessageAt
+    }
+
+    MESSAGE {
+        string id
+        string conversationId
+        string sender
+        string content
+        datetime createdAt
+    }
+
+    KNOWLEDGE_ARTICLE {
+        string id
+        string tenantId
+        string title
+        string category
+        bool isActive
+    }
+
+    %% Relationships
+    TENANT ||--o{ STORE : owns
+    TENANT ||--o{ PRODUCT : defines
+    TENANT ||--o{ PROMOTION : offers
+    TENANT ||--o{ KNOWLEDGE_ARTICLE : provides
+    TENANT ||--o{ CONVERSATION : scopes
+
+    CUSTOMER ||--o{ CONVERSATION : participates
+    CONVERSATION ||--o{ MESSAGE : contains
+
+    STORE ||--o{ PRODUCT : sells
+    CUSTOMER ||--o{ CART : has
+    CART ||--o{ CART_ITEM : contains
+    PRODUCT ||--o{ CART_ITEM : referenced_by
+
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--o{ ORDER_ITEM : contains
+    PRODUCT ||--o{ ORDER_ITEM : referenced_by
+
+    CART }o--|| STORE : for
+    ORDER }o--|| STORE : fulfilled_by
