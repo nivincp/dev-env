@@ -11,3 +11,15 @@ Article.find(1)
 Article.all
 
 bin/rails routes
+
+bin/rails generate model Comment commenter:string body:text article:references
+bin/rails db:migrate
+
+bin/rails generate controller Comments
+
+bin/rails generate migration AddStatusToArticles status:string
+bin/rails generate migration AddStatusToComments status:string
+bin/rails db:migrate
+
+Article.update_all(status: "public")
+Comment.update_all(status: "public")
