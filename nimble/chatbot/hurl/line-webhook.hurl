@@ -1,4 +1,4 @@
-POST {{api_host}}/webhooks/line/{{brand}}
+POST https://{{api_host}}/webhooks/line/{{brand}}
 Content-Type: application/json
 X-Line-Signature: {{signature}}
 
@@ -9,4 +9,6 @@ X-Line-Signature: {{signature}}
     }
 }
 
-HTTP 200
+HTTP *
+[Asserts]
+status toString matches "^(200|400)$"

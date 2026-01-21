@@ -11,3 +11,7 @@ sync-customer:
 
 me:
 	hurl -i --variables-file $(VARS) me.hurl
+
+line-webhook:
+	hurl -i --variables-file $(VARS) line-webhook.hurl
+
