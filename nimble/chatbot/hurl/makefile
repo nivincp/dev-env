@@ -1,6 +1,13 @@
-VARS_FILE=vars.env
-HURL=hurl --variables-file $(VARS_FILE)
+VARS = vars.env
 
-# Push event
-line_webhook:
-	@$(HURL) line_webhook.hurl | jq .
+signup:
+	hurl -i --variables-file $(VARS) signup.hurl
+
+get-token:
+	hurl -i --variables-file $(VARS) get-token.hurl
+
+sync-customer:
+	hurl -i --variables-file $(VARS) sync-customer.hurl
+
+me:
+	hurl -i --variables-file $(VARS) me.hurl

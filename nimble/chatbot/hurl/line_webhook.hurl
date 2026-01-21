@@ -1,6 +1,6 @@
-POST {{API_HOST}}/webhooks/line/{{BRAND}}
+POST {{api_host}}/webhooks/line/{{brand}}
 Content-Type: application/json
-X-Line-Signature: {{SIGNATURE}}
+X-Line-Signature: {{signature}}
 
 {
     "type": "new",
