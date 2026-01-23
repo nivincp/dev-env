@@ -9,8 +9,6 @@
 
 ## Current implementation mismatches
 
-- Still no user mapping persistence; we only use cache.
-- Token cache key is line_access_token:#{user_id} (not tenant‑scoped, no refresh token).
 - No refresh flow or 401 retry.
 - Signup uses hardcoded names, not LINE display name.
 
