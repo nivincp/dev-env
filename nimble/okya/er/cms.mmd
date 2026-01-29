@@ -1,0 +1,36 @@
+erDiagram
+  TENANT ||--o{ PAGE : owns
+  TEMPLATE ||--o{ PAGE : renders_with
+  TENANT ||--o{ ANNOUNCEMENT : publishes
+
+  TENANT {
+    uuid id PK
+    string name
+  }
+
+  TEMPLATE {
+    uuid id PK
+    string name
+    string template_type
+    json schema
+    boolean active
+  }
+
+  PAGE {
+    uuid id PK
+    uuid tenant_id FK
+    uuid template_id FK
+    string title
+    string slug
+    json content
+    boolean published
+  }
+
+  ANNOUNCEMENT {
+    uuid id PK
+    uuid tenant_id FK
+    string title
+    string body
+    datetime published_at
+    boolean active
+  }

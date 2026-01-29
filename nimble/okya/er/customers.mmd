@@ -1,0 +1,34 @@
+erDiagram
+  TENANT ||--o{ CUSTOMER : owns
+  CUSTOMER ||--o{ ADDRESS : has
+  CUSTOMER ||--o{ CUSTOMER_DEVICE : uses
+  CUSTOMER ||--o{ CHATBOT_CUSTOMER : links_to
+
+  CUSTOMER {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string phone
+    string email
+  }
+
+  ADDRESS {
+    uuid id PK
+    uuid customer_id FK
+    string city
+    string country
+  }
+
+  CUSTOMER_DEVICE {
+    uuid id PK
+    uuid customer_id FK
+    string device_type
+    string token
+  }
+
+  CHATBOT_CUSTOMER {
+    uuid id PK
+    uuid customer_id FK
+    string platform
+    string platform_user_id
+  }

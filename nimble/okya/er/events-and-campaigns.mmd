@@ -1,0 +1,43 @@
+erDiagram
+  TENANT ||--o{ CAMPAIGN : runs
+  TENANT ||--o{ EVENT_TYPE : defines
+  TENANT ||--o{ EVENT : emits
+
+  CAMPAIGN ||--o{ EVENT : generates
+  EVENT_TYPE ||--o{ EVENT : categorizes
+
+  TENANT {
+    uuid id PK
+    string name
+  }
+
+  CAMPAIGN {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string campaign_type
+    datetime starts_at
+    datetime ends_at
+    string status
+    boolean active
+  }
+
+  EVENT_TYPE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string code
+    string domain
+  }
+
+  EVENT {
+    uuid id PK
+    uuid tenant_id FK
+    uuid campaign_id FK
+    uuid event_type_id FK
+    string source
+    string subject_type
+    uuid subject_id
+    json payload
+    datetime created_at
+  }

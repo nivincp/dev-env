@@ -1,0 +1,35 @@
+erDiagram
+  TENANT ||--o{ PAYMENT_METHOD : configures
+  ORDER ||--o{ ORDER_PAYMENT : paid_by
+  PAYMENT_METHOD ||--o{ ORDER_PAYMENT : processes
+
+  TENANT ||--o{ CASH_DRAWER : owns
+  CASH_DRAWER ||--o{ CASH_ENTRY : records
+
+  PAYMENT_METHOD {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string type
+  }
+
+  ORDER_PAYMENT {
+    uuid id PK
+    uuid order_id FK
+    uuid payment_method_id FK
+    decimal amount
+    datetime paid_at
+  }
+
+  CASH_DRAWER {
+    uuid id PK
+    uuid tenant_id FK
+    string status
+  }
+
+  CASH_ENTRY {
+    uuid id PK
+    uuid cash_drawer_id FK
+    decimal amount
+    string entry_type
+  }

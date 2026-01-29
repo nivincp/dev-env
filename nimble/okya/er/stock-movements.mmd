@@ -1,0 +1,17 @@
+erDiagram
+  STOCK_ITEM ||--o{ STOCK_MOVEMENT : records
+
+  STOCK_ITEM {
+    uuid id PK
+    decimal quantity_on_hand
+  }
+
+  STOCK_MOVEMENT {
+    uuid id PK
+    uuid stock_item_id FK
+    decimal quantity_delta
+    string movement_type
+    string source_type
+    uuid source_id
+    datetime created_at
+  }

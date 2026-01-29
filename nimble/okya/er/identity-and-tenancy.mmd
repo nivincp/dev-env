@@ -1,0 +1,42 @@
+erDiagram
+  TENANT_GROUP ||--o{ TENANT : owns
+  TENANT ||--o{ USER : has
+  TENANT ||--o{ EMPLOYEE : employs
+  USER ||--o{ IDENTITY : authenticates_with
+
+  TENANT_GROUP {
+    string id PK
+    string name
+    datetime created_at
+  }
+
+  TENANT {
+    uuid id PK
+    string name
+    string code
+    string status
+    datetime created_at
+  }
+
+  USER {
+    uuid id PK
+    uuid tenant_id FK
+    string email
+    string role
+    boolean active
+  }
+
+  EMPLOYEE {
+    uuid id PK
+    uuid tenant_id FK
+    uuid user_id FK
+    string role
+  }
+
+  IDENTITY {
+    uuid id PK
+    uuid user_id FK
+    string provider
+    string external_uid
+  }
+  

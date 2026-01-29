@@ -1,0 +1,28 @@
+erDiagram
+  PRODUCT ||--o{ PRODUCT_VARIANT : has
+  PRODUCT ||--o{ TAXON : categorized_as
+  PRODUCT_VARIANT ||--o{ PRICE : priced_as
+
+  PRODUCT {
+    uuid id
+    string name
+    string status
+  }
+
+  PRODUCT_VARIANT {
+    uuid id
+    uuid product_id
+    string sku
+  }
+
+  PRICE {
+    uuid id
+    uuid product_variant_id
+    decimal amount
+    string currency
+  }
+
+  TAXON {
+    uuid id
+    string name
+  }

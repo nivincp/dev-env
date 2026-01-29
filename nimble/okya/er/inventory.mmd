@@ -1,0 +1,22 @@
+erDiagram
+  STORE ||--o{ STOCK_LOCATION : has
+  STOCK_LOCATION ||--o{ STOCK_ITEM : contains
+  STOCK_ITEM ||--o{ STOCK_MOVEMENT : moves
+
+  STOCK_LOCATION {
+    uuid id
+    uuid store_id
+    string name
+  }
+
+  STOCK_ITEM {
+    uuid id
+    uuid product_variant_id
+    integer quantity
+  }
+
+  STOCK_MOVEMENT {
+    uuid id
+    uuid stock_item_id
+    integer delta
+  }

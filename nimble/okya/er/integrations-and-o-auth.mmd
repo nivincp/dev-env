@@ -1,0 +1,16 @@
+erDiagram
+  TENANT ||--o{ INTEGRATION : configures
+  INTEGRATION ||--o{ OAUTH_TOKEN : authenticates_with
+
+  INTEGRATION {
+    uuid id
+    uuid tenant_id
+    string provider
+  }
+
+  OAUTH_TOKEN {
+    uuid id
+    uuid integration_id
+    string access_token
+    datetime expires_at
+  }
