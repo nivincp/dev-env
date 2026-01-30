@@ -1,0 +1,41 @@
+erDiagram
+  TENANT ||--o{ OAUTH_APPLICATION : owns
+  OAUTH_APPLICATION ||--o{ OAUTH_ACCESS_TOKEN : issues
+  OAUTH_APPLICATION ||--o{ OAUTH_ACCESS_GRANT : grants
+  OAUTH_ACCESS_GRANT ||--o{ OAUTH_OPENID_REQUEST : has
+  USER ||--o{ OAUTH_ACCESS_TOKEN : authenticates
+  USER ||--o{ OAUTH_ACCESS_GRANT : authorizes
+
+  OAUTH_APPLICATION {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string uid
+    string scopes
+  }
+
+  OAUTH_ACCESS_TOKEN {
+    uuid id PK
+    uuid application_id FK
+    uuid resource_owner_id FK
+    uuid tenant_id FK
+    string token
+    datetime revoked_at
+  }
+
+  OAUTH_ACCESS_GRANT {
+    uuid id PK
+    uuid application_id FK
+    uuid resource_owner_id FK
+    uuid tenant_id FK
+    string token
+    datetime revoked_at
+  }
+
+  OAUTH_OPENID_REQUEST {
+    uuid id PK
+    uuid access_grant_id FK
+    uuid tenant_id FK
+    string nonce
+  }
+  

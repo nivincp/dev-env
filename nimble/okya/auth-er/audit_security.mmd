@@ -1,0 +1,14 @@
+erDiagram
+  TENANT ||--o{ LOGIN_ACTIVITY : logs
+  USER ||--o{ LOGIN_ACTIVITY : generates
+
+  LOGIN_ACTIVITY {
+    uuid id PK
+    uuid tenant_id FK
+    uuid user_id FK
+    string strategy
+    boolean success
+    string ip
+    string country
+    datetime created_at
+  }

@@ -1,0 +1,57 @@
+erDiagram
+  TENANT ||--o{ ROLE : has
+  TENANT ||--o{ PERMISSION : has
+  TENANT ||--o{ API_CLIENT : has
+
+  ROLE ||--o{ USER_ROLE : assigned
+  USER ||--o{ USER_ROLE : has
+
+  ROLE ||--o{ ROLE_PERMISSION : grants
+  PERMISSION ||--o{ ROLE_PERMISSION : included
+
+  API_CLIENT ||--o{ PERMISSION : exposes
+  ROLE ||--o{ ROLE_API : allows
+  API_CLIENT ||--o{ ROLE_API : linked
+
+  ROLE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    boolean is_default
+  }
+
+  PERMISSION {
+    uuid id PK
+    uuid tenant_id FK
+    uuid api_client_id FK
+    string scope
+  }
+
+  API_CLIENT {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string identifier
+  }
+
+  USER_ROLE {
+    uuid id PK
+    uuid user_id FK
+    uuid role_id FK
+    uuid tenant_id FK
+  }
+
+  ROLE_PERMISSION {
+    uuid id PK
+    uuid role_id FK
+    uuid permission_id FK
+    uuid tenant_id FK
+  }
+
+  ROLE_API {
+    uuid id PK
+    uuid role_id FK
+    uuid api_client_id FK
+    uuid tenant_id FK
+  }
+  
