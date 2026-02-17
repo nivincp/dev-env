@@ -1,0 +1,20 @@
+erDiagram
+  TENANT ||--o{ TEMPLATE : owns
+  TENANT ||--o{ TENANT_FUNCTION : defines
+
+  TEMPLATE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string path
+    jsonb body
+  }
+
+  TENANT_FUNCTION {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string slug
+    string command
+    boolean enabled
+  }

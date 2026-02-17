@@ -1,0 +1,43 @@
+erDiagram
+  TENANT ||--o{ USER : has
+  TENANT ||--o{ ADMIN_USER : has
+  TENANT ||--o{ ROLE : defines
+  TENANT ||--o{ ADMIN_ROLE : defines
+  TENANT ||--o{ IDENTITY : owns
+  USER ||--o{ IDENTITY : authenticates_with
+
+  TENANT {
+    uuid id PK
+    string name
+    string subdomain
+    string timezone
+    string issuer
+  }
+
+  USER {
+    uuid id PK
+    uuid tenant_id FK
+    string email
+    datetime confirmed_at
+    datetime last_activity_at
+    jsonb metadata
+  }
+
+  ADMIN_USER {
+    uuid id PK
+    uuid tenant_id FK
+    string email
+    datetime confirmed_at
+    datetime last_activity_at
+    boolean phone_verified
+    jsonb metadata
+  }
+
+  IDENTITY {
+    uuid id PK
+    uuid tenant_id FK
+    uuid user_id FK
+    string provider
+    string uid
+  }
+  

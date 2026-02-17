@@ -1,0 +1,22 @@
+erDiagram
+  TENANT ||--o{ BATCH : has
+  ADMIN_USER ||--o{ BATCH : creates
+  BATCH ||--o{ BATCH_ERROR_MESSAGE : reports
+
+  BATCH {
+    uuid id PK
+    uuid tenant_id FK
+    uuid admin_user_id FK
+    string kind
+    string status
+    jsonb metadata
+  }
+
+  BATCH_ERROR_MESSAGE {
+    uuid id PK
+    uuid tenant_id FK
+    uuid batch_id FK
+    string message
+    datetime discarded_at
+  }
+  

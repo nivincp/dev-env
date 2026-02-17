@@ -1,0 +1,19 @@
+erDiagram
+  TENANT ||--o{ ADMIN_ROLE : defines
+  ADMIN_USER ||--o{ ADMIN_USER_ROLE : assigned
+  ADMIN_ROLE ||--o{ ADMIN_USER_ROLE : grants
+
+  ADMIN_ROLE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string description
+  }
+
+  ADMIN_USER_ROLE {
+    uuid id PK
+    uuid tenant_id FK
+    uuid admin_user_id FK
+    uuid admin_role_id FK
+  }
+  

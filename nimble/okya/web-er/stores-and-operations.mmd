@@ -1,0 +1,32 @@
+erDiagram
+  TENANT ||--o{ STORE : operates
+  TENANT ||--o{ CHANNEL : enables
+  STORE ||--o{ STORE_CHANNEL : exposes_through
+  CHANNEL ||--o{ STORE_CHANNEL : connects_to
+  STORE ||--o{ STORE_DEVICE : runs_on
+
+  STORE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string status
+  }
+
+  CHANNEL {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string type
+  }
+
+  STORE_CHANNEL {
+    uuid id PK
+    uuid store_id FK
+    uuid channel_id FK
+  }
+
+  STORE_DEVICE {
+    uuid id PK
+    uuid store_id FK
+    string device_type
+  }

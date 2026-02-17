@@ -1,0 +1,33 @@
+erDiagram
+  TENANT ||--o{ STOCK_LOCATION : owns
+  STOCK_LOCATION ||--o{ STOCK_ITEM : contains
+  PRODUCT_VARIANT ||--o{ STOCK_ITEM : represents
+
+  TENANT {
+    uuid id PK
+    string name
+  }
+
+  STOCK_LOCATION {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string location_type
+    boolean active
+  }
+
+  STOCK_ITEM {
+    uuid id PK
+    uuid stock_location_id FK
+    uuid product_variant_id FK
+    decimal quantity_on_hand
+    decimal reserved_quantity
+    datetime updated_at
+  }
+
+  PRODUCT_VARIANT {
+    uuid id PK
+    string sku
+    string name
+    boolean track_inventory
+  }

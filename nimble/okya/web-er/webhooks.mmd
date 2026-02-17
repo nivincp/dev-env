@@ -1,0 +1,32 @@
+erDiagram
+  %% =========================
+  %% Webhooks (integration layer)
+  %% =========================
+  TENANT ||--o{ WEBHOOK : owns
+  WEBHOOK ||--o{ WEBHOOK_LOG : records
+
+  TENANT {
+    uuid id PK
+    string name
+  }
+
+  WEBHOOK {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string event_type
+    string target_url
+    string http_method
+    boolean active
+    datetime created_at
+  }
+
+  WEBHOOK_LOG {
+    uuid id PK
+    uuid webhook_id FK
+    int response_status
+    string delivery_status
+    string error_message
+    datetime attempted_at
+  }
+  

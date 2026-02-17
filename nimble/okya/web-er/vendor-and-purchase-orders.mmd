@@ -1,0 +1,75 @@
+erDiagram
+  %% =========================
+  %% Vendors
+  %% =========================
+  TENANT ||--o{ VENDOR_CATEGORY : defines
+  VENDOR_CATEGORY ||--o{ VENDOR : groups
+  TENANT ||--o{ VENDOR : owns
+
+  %% =========================
+  %% Stock location (for receiving)
+  %% =========================
+  TENANT ||--o{ STOCK_LOCATION : has
+
+  %% =========================
+  %% Purchase Orders
+  %% =========================
+  TENANT ||--o{ PURCHASE_ORDER : creates
+  STOCK_LOCATION ||--o{ PURCHASE_ORDER : receives_into
+  VENDOR ||--o{ PURCHASE_ORDER : supplies
+
+  PURCHASE_ORDER ||--o{ PURCHASE_ORDER_ITEM : contains
+  PRODUCT_VARIANT ||--o{ PURCHASE_ORDER_ITEM : ordered_as
+
+  %% =========================
+  %% Entities (key fields)
+  %% =========================
+  VENDOR_CATEGORY {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    boolean active
+  }
+
+  VENDOR {
+    uuid id PK
+    uuid tenant_id FK
+    uuid vendor_category_id FK
+    string name
+    string status
+    string phone
+    string email
+  }
+
+  STOCK_LOCATION {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string type
+    boolean active
+  }
+
+  PURCHASE_ORDER {
+    uuid id PK
+    uuid tenant_id FK
+    uuid stock_location_id FK
+    uuid vendor_id FK
+    string status
+    datetime ordered_at
+    datetime expected_at
+  }
+
+  PURCHASE_ORDER_ITEM {
+    uuid id PK
+    uuid purchase_order_id FK
+    uuid product_variant_id FK
+    decimal quantity
+    decimal unit_cost
+  }
+
+  PRODUCT_VARIANT {
+    uuid id PK
+    uuid product_id FK
+    string sku
+    decimal base_price
+  }

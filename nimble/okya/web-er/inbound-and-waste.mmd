@@ -1,0 +1,34 @@
+erDiagram
+  TENANT ||--o{ STOCK_RECEIPT : records
+  USER ||--o{ STOCK_RECEIPT : receives
+  STOCK_RECEIPT ||--o{ STOCK_MOVEMENT : creates
+
+  TENANT ||--o{ WASTE_REASON : defines
+  WASTE_REASON ||--o{ WASTE_ENTRY : categorizes
+  WASTE_ENTRY ||--o{ STOCK_MOVEMENT : creates
+
+  STOCK_RECEIPT {
+    uuid id PK
+    uuid tenant_id FK
+    uuid user_id FK
+    string reference_number
+    datetime received_at
+  }
+
+  WASTE_REASON {
+    uuid id PK
+    string code
+    string name
+  }
+
+  WASTE_ENTRY {
+    uuid id PK
+    uuid waste_reason_id FK
+    decimal quantity
+    string notes
+  }
+
+  STOCK_MOVEMENT {
+    uuid id PK
+    decimal quantity_delta
+  }

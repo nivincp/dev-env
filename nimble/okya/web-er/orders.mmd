@@ -1,0 +1,35 @@
+erDiagram
+  CUSTOMER ||--o{ ORDER : places
+  STORE ||--o{ ORDER : receives
+  ORDER ||--o{ ORDER_LINE_ITEM : contains
+  ORDER ||--o{ PAYMENT : paid_by
+  ORDER ||--o{ REFUND : refunded_by
+
+  ORDER {
+    uuid id
+    uuid customer_id
+    uuid store_id
+    string status
+    decimal total
+  }
+
+  ORDER_LINE_ITEM {
+    uuid id
+    uuid order_id
+    uuid product_variant_id
+    integer quantity
+  }
+
+  PAYMENT {
+    uuid id
+    uuid order_id
+    string method
+    decimal amount
+  }
+
+  REFUND {
+    uuid id
+    uuid order_id
+    decimal amount
+  }
+  

@@ -1,0 +1,25 @@
+erDiagram
+  TENANT ||--o{ TIER : defines
+  TENANT ||--o{ BADGE : defines
+
+  TENANT {
+    uuid id PK
+    string name
+  }
+
+  TIER {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    int priority
+    int min_points
+    boolean active
+  }
+
+  BADGE {
+    uuid id PK
+    uuid tenant_id FK
+    string name
+    string icon_url
+    boolean active
+  }

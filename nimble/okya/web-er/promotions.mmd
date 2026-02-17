@@ -1,0 +1,22 @@
+erDiagram
+  PROMOTION ||--o{ PROMOTION_RULE : defines
+  PROMOTION ||--o{ PROMOTION_ACTION : applies
+  ORDER ||--o{ PROMOTION : uses
+
+  PROMOTION {
+    uuid id
+    string name
+    string code
+  }
+
+  PROMOTION_RULE {
+    uuid id
+    uuid promotion_id
+    string rule_type
+  }
+
+  PROMOTION_ACTION {
+    uuid id
+    uuid promotion_id
+    string action_type
+  }

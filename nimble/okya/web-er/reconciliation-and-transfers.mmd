@@ -1,0 +1,34 @@
+erDiagram
+  TENANT ||--o{ STOCK_COUNT : performs
+  STOCK_COUNT ||--o{ STOCK_MOVEMENT : reconciles
+
+  TENANT ||--o{ STOCK_ADJUSTMENT : authorizes
+  STOCK_ADJUSTMENT ||--o{ STOCK_MOVEMENT : adjusts
+
+  TENANT ||--o{ STOCK_TRANSFER : initiates
+  STOCK_TRANSFER ||--o{ STOCK_MOVEMENT : transfers
+
+  STOCK_COUNT {
+    uuid id PK
+    datetime counted_at
+    string status
+  }
+
+  STOCK_ADJUSTMENT {
+    uuid id PK
+    string reason
+    boolean approved
+  }
+
+  STOCK_TRANSFER {
+    uuid id PK
+    string status
+    datetime shipped_at
+    datetime received_at
+  }
+
+  STOCK_MOVEMENT {
+    uuid id PK
+    decimal quantity_delta
+    string movement_type
+  }
