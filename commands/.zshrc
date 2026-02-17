@@ -8,3 +8,16 @@ gdc() {
   git diff --no-color "$base...$branch" | pbcopy
   echo "Copied diff: $base...$branch"
 }
+
+clear_history() {
+  # Clear in-memory history
+  history -c
+
+  # Truncate history file
+  : > ~/.zsh_history
+
+  # Write empty history to file
+  history -w
+
+  echo "Zsh history cleared."
+}
