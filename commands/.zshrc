@@ -16,3 +16,18 @@ clear_history() {
   fc -R
   echo "Zsh history fully reset."
 }
+
+yt1080() {
+  if [ -z "$1" ]; then
+    echo "Usage: yt1080 <url>"
+    return 1
+  fi
+
+  yt-dlp \
+    -f "bv*[height=1080][ext=mp4]+ba[ext=m4a]/b[height=1080]" \
+    --merge-output-format mp4 \
+    --embed-metadata \
+    --embed-thumbnail \
+    --add-metadata \
+    "$1"
+}
