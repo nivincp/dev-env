@@ -10,14 +10,9 @@ gdc() {
 }
 
 clear_history() {
-  # Clear in-memory history
-  history -c
-
-  # Truncate history file
-  : > ~/.zsh_history
-
-  # Write empty history to file
-  history -w
-
-  echo "Zsh history cleared."
+  unset HISTFILE
+  print -n >! ~/.zsh_history
+  export HISTFILE=~/.zsh_history
+  fc -R
+  echo "Zsh history fully reset."
 }
