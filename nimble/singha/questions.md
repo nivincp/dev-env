@@ -7,10 +7,8 @@
 ## Retail app
 
 - shipping flows, ETA handling
-- wholesaler API req / res
 - as a retailer what if I have multiple shops
 - returning user - last order - wholesaler name (might have multiple ones)
-- categories depth (2 level)?
 - in wholesale store frontend listing do we need to support categories?
 - in cart ui items are grouped by whole saler but in checkout ui its not, do we not need this grouping here?
 - orders listing ui, what if we have more than one wholesaler?
