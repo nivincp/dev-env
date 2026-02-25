@@ -12,7 +12,6 @@
 - returning user - last order - wholesaler name (might have multiple ones)
 - categories depth (2 level)?
 - in wholesale store frontend listing do we need to support categories?
-- product variants and options are currently out of scope?
 - in cart ui items are grouped by whole saler but in checkout ui its not, do we not need this grouping here?
 - orders listing ui, what if we have more than one wholesaler?
 - order detail ui status transitions what if we have more than one wholesaler?, items are not grouped by wholesaler
@@ -26,4 +25,3 @@
 - is it only the web version? 
 - inventory management - aren't locations needed?
 - store credit management flows, dispute resolution
-- 
