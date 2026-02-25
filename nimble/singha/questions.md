@@ -22,4 +22,4 @@
 
 - is it only the web version? 
 - inventory management - aren't locations needed?
-- store credit management flows, dispute resolution
+
