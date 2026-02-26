@@ -9,7 +9,6 @@
 - shipping flows, ETA handling
 - as a retailer what if I have multiple shops
 - returning user - last order - wholesaler name (might have multiple ones)
-- in wholesale store frontend listing do we need to support categories?
 - in cart ui items are grouped by whole saler but in checkout ui its not, do we not need this grouping here?
 - orders listing ui, what if we have more than one wholesaler?
 - order detail ui status transitions what if we have more than one wholesaler?, items are not grouped by wholesaler
